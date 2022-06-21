@@ -1,0 +1,26 @@
+{
+  "context-menu": {
+    "atom-text-editor": [
+      {
+        "label": "Toggle notion-script-package",
+        "command": "notion-script-package:toggle"
+      }
+    ]
+  },
+  "menu": [
+    {
+      "label": "Packages",
+      "submenu": [
+        {
+          "label": "notion-script-package",
+          "submenu": [
+            {
+              "label": "Toggle",
+              "command": "notion-script-package:toggle"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
