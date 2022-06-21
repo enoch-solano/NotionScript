@@ -8,66 +8,66 @@ import NotionScriptPackage from '../lib/notion-script-package';
 // or `fdescribe`). Remove the `f` to unfocus the block.
 
 describe('NotionScriptPackage', () => {
-  let workspaceElement, activationPromise;
+    let workspaceElement, activationPromise;
 
-  beforeEach(() => {
-    workspaceElement = atom.views.getView(atom.workspace);
-    activationPromise = atom.packages.activatePackage('notion-script-package');
-  });
-
-  describe('when the notion-script-package:toggle event is triggered', () => {
-    it('hides and shows the modal panel', () => {
-      // Before the activation event the view is not on the DOM, and no panel
-      // has been created
-      expect(workspaceElement.querySelector('.notion-script-package')).not.toExist();
-
-      // This is an activation event, triggering it will cause the package to be
-      // activated.
-      atom.commands.dispatch(workspaceElement, 'notion-script-package:toggle');
-
-      waitsForPromise(() => {
-        return activationPromise;
-      });
-
-      runs(() => {
-        expect(workspaceElement.querySelector('.notion-script-package')).toExist();
-
-        let notionScriptPackageElement = workspaceElement.querySelector('.notion-script-package');
-        expect(notionScriptPackageElement).toExist();
-
-        let notionScriptPackagePanel = atom.workspace.panelForItem(notionScriptPackageElement);
-        expect(notionScriptPackagePanel.isVisible()).toBe(true);
-        atom.commands.dispatch(workspaceElement, 'notion-script-package:toggle');
-        expect(notionScriptPackagePanel.isVisible()).toBe(false);
-      });
+    beforeEach(() => {
+        workspaceElement = atom.views.getView(atom.workspace);
+        activationPromise = atom.packages.activatePackage('notion-script-package');
     });
 
-    it('hides and shows the view', () => {
-      // This test shows you an integration test testing at the view level.
+    describe('when the notion-script-package:toggle event is triggered', () => {
+        it('hides and shows the modal panel', () => {
+            // Before the activation event the view is not on the DOM, and no panel
+            // has been created
+            expect(workspaceElement.querySelector('.notion-script-package')).not.toExist();
 
-      // Attaching the workspaceElement to the DOM is required to allow the
-      // `toBeVisible()` matchers to work. Anything testing visibility or focus
-      // requires that the workspaceElement is on the DOM. Tests that attach the
-      // workspaceElement to the DOM are generally slower than those off DOM.
-      jasmine.attachToDOM(workspaceElement);
+            // This is an activation event, triggering it will cause the package to be
+            // activated.
+            atom.commands.dispatch(workspaceElement, 'notion-script-package:toggle');
 
-      expect(workspaceElement.querySelector('.notion-script-package')).not.toExist();
+            waitsForPromise(() => {
+                return activationPromise;
+            });
 
-      // This is an activation event, triggering it causes the package to be
-      // activated.
-      atom.commands.dispatch(workspaceElement, 'notion-script-package:toggle');
+            runs(() => {
+                expect(workspaceElement.querySelector('.notion-script-package')).toExist();
 
-      waitsForPromise(() => {
-        return activationPromise;
-      });
+                let notionScriptPackageElement = workspaceElement.querySelector('.notion-script-package');
+                expect(notionScriptPackageElement).toExist();
 
-      runs(() => {
-        // Now we can test for view visibility
-        let notionScriptPackageElement = workspaceElement.querySelector('.notion-script-package');
-        expect(notionScriptPackageElement).toBeVisible();
-        atom.commands.dispatch(workspaceElement, 'notion-script-package:toggle');
-        expect(notionScriptPackageElement).not.toBeVisible();
-      });
+                let notionScriptPackagePanel = atom.workspace.panelForItem(notionScriptPackageElement);
+                expect(notionScriptPackagePanel.isVisible()).toBe(true);
+                atom.commands.dispatch(workspaceElement, 'notion-script-package:toggle');
+                expect(notionScriptPackagePanel.isVisible()).toBe(false);
+            });
+        });
+
+        it('hides and shows the view', () => {
+            // This test shows you an integration test testing at the view level.
+
+            // Attaching the workspaceElement to the DOM is required to allow the
+            // `toBeVisible()` matchers to work. Anything testing visibility or focus
+            // requires that the workspaceElement is on the DOM. Tests that attach the
+            // workspaceElement to the DOM are generally slower than those off DOM.
+            jasmine.attachToDOM(workspaceElement);
+
+            expect(workspaceElement.querySelector('.notion-script-package')).not.toExist();
+
+            // This is an activation event, triggering it causes the package to be
+            // activated.
+            atom.commands.dispatch(workspaceElement, 'notion-script-package:toggle');
+
+            waitsForPromise(() => {
+                return activationPromise;
+            });
+
+            runs(() => {
+                // Now we can test for view visibility
+                let notionScriptPackageElement = workspaceElement.querySelector('.notion-script-package');
+                expect(notionScriptPackageElement).toBeVisible();
+                atom.commands.dispatch(workspaceElement, 'notion-script-package:toggle');
+                expect(notionScriptPackageElement).not.toBeVisible();
+            });
+        });
     });
-  });
 });
