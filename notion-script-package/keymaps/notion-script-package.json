@@ -1,5 +1,5 @@
 {
     "atom-workspace": {
-        "ctrl-alt-o": "notion-script-package:toggle"
+        "ctrl-alt-s": "notion-script-package:toggle"
     }
 }
