@@ -38,11 +38,19 @@ export default {
     },
 
     toggle() {
-        console.log('NotionScriptPackage was toggled!');
-        return (
-            this.modalPanel.isVisible() ?
-            this.modalPanel.hide() :
-            this.modalPanel.show()
-        );
+        let editor
+        if (editor = atom.workspace.getActiveTextEditor()) {
+            let editorText = editor.getText()
+
+            // removes the tabs
+            editorText = editorText.replace(/(\t)/g, '')
+            // replaces any multi-newlines with a single newline
+            editorText = editorText.replace(/(\r\n|\r|\n){2,}/g, '\n')
+            //replaces newlines with a space
+            editorText = editorText.replace(/(\r\n|\r|\n)/g, ' ')
+
+            editor.setText(editorText)
+            editor.saveAs(editor.getPath() + 'x')
+        }
     }
 };
