@@ -47,7 +47,7 @@ export default {
             // replaces any multi-newlines with a single newline
             editorText = editorText.replace(/(\r\n|\r|\n){2,}/g, '\n')
             //replaces newlines with a space
-            editorText = editorText.replace(/(\r\n|\r|\n)/g, ' ')
+            editorText = editorText.replace(/(\r\n|\r|\n)/g, ' ').trim()
 
             editor.setText(editorText)
             editor.saveAs(editor.getPath() + 'x')
